@@ -16,6 +16,9 @@ int16_t distance = 0;
 int16_t flux = 0;
 int16_t temp = 0;
 
+float avgDistance[4];
+int average_distance;
+
 /********  Servo  ********/
 Servo servo;
 int position;
@@ -54,9 +57,14 @@ void loop() {
     //servo.write(position);
 
     /********  Lidar  ********/
-    delay(50);
-    lidar.getData(distance, flux, temp);
-    Serial.print(distance);
+    for (int i = 0; i<4; i++) {
+      delay(10);
+      lidar.getData(distance, flux, temp);
+      avgDistance[i] = distance;
+    }
+
+    average_distance = (avgDistance[0]+avgDistance[1]+avgDistance[2]+avgDistance[3])/4; 
+    Serial.print(average_distance);
     Serial.print(",");
     Serial.print(position);
     Serial.print(",");

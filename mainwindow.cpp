@@ -5,7 +5,7 @@
 
 #include <QSerialPort>
 #include <QSerialPortInfo>
-#include <QDebug>
+#include <QDebug>+
 #include <string>
 #include <QMessageBox>
 
